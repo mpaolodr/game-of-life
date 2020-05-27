@@ -9,39 +9,38 @@ body {
 }
 
 .App {
-  display: grid;
-  width: 35%;
+  display: flex;
+  width: 60%;
   margin: 0 auto;
   padding-top: 100px;
 
   .grid {
-    place-self: center;
     display: grid;
-    border: 2px solid black;
 
     .cell {
       width: 15px;
       height: 15px;
-      border-radius: 1px;
+      border: 1px solid black;
     }
   }
 
   .interface {
-    margin: 0 auto;
-    width: 85%;
+    height: 400px;
     display: flex;
     flex-direction: column-reverse;
+    justify-content: flex-end;
 
     .btn-container {
-      width: 100%;
+      width: 250px;
       margin: 10px auto;
       display: flex;
+      flex-direction: column;
       justify-content: space-around;
       align-items: center;
-      height: 50px;
+      height: 150px;
 
       button {
-        width: 25%;
+        width: 90%;
         padding: 5px;
         border-radius: 3px;
         font-size: 1.5rem;
@@ -51,9 +50,50 @@ body {
         }
       }
     }
-    p {
+    .generation {
       font-size: 2rem;
       text-align: center;
+    }
+  }
+
+  .features {
+    .btn-feat-container {
+      width: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 100px;
+
+      button {
+        width: 90%;
+        padding: 5px;
+        border-radius: 3px;
+        font-size: 1.5rem;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  form {
+    height: 150px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 50px auto;
+
+    label {
+      font-size: 1.5rem;
+    }
+
+    select {
+      padding: 5px;
+      border-radius: 2px;
+      font-size: 1.5rem;
     }
   }
 }
