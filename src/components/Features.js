@@ -45,6 +45,19 @@ const Features = (props) => {
           <option value="25x25">25 x 25</option>
         </select>
       </form>
+
+      <div className="rules">
+        <h3 className="rules-heading">Rules:</h3>
+
+        <p className="rules-desc">
+          1. If a cell(individual square) is alive, it will die if it has 4 or
+          more neighbors <span>OR</span> if it only has one or less neighbor
+        </p>
+        <p className="rules-desc">
+          2. If a cell is dead, it will come to life if it has{" "}
+          <span>EXACTLY</span> 3 alive neighbors
+        </p>
+      </div>
     </div>
   );
 };

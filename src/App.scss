@@ -81,5 +81,22 @@ body {
         font-size: 1.5rem;
       }
     }
+
+    .rules {
+      height: 300px;
+
+      .rules-heading {
+        font-size: 1.8rem;
+      }
+
+      .rules-desc {
+        width: 90%;
+        font-size: 1.6rem;
+      }
+
+      span {
+        font-weight: 900;
+      }
+    }
   }
 }
