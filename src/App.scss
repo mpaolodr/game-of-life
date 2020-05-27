@@ -16,6 +16,11 @@ body {
 
   .grid {
     display: grid;
+    width: 750px;
+    max-width: 750px;
+    height: 640px;
+    margin: 0 auto;
+    place-content: center;
 
     .cell {
       width: 15px;
@@ -37,7 +42,7 @@ body {
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
-      height: 150px;
+      height: 250px;
 
       button {
         width: 90%;
@@ -57,43 +62,24 @@ body {
   }
 
   .features {
-    .btn-feat-container {
+    form {
+      height: 200px;
       width: 250px;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      align-items: center;
-      height: 100px;
+      margin: 60px auto;
 
-      button {
+      label {
+        font-size: 1.5rem;
+      }
+
+      select {
         width: 90%;
         padding: 5px;
-        border-radius: 3px;
+        border-radius: 2px;
         font-size: 1.5rem;
-
-        &:focus {
-          outline: none;
-        }
       }
-    }
-  }
-
-  form {
-    height: 150px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 50px auto;
-
-    label {
-      font-size: 1.5rem;
-    }
-
-    select {
-      padding: 5px;
-      border-radius: 2px;
-      font-size: 1.5rem;
     }
   }
 }

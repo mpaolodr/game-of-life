@@ -16,16 +16,22 @@ const operations = [
 ];
 
 const Controls = (props) => {
-  const { setGrid, numRows, numCols } = props;
+  const { setGrid, numRows, numCols, speed, speedUp, speedDown } = props;
 
   const [running, setRunning] = useState(false);
   const [genCount, setGenCount] = useState(0);
 
   const runningRef = useRef(running);
   const genCountRef = useRef(genCount);
+  const speedRef = useRef(speed);
+  const numRowsRef = useRef(numRows);
+  const numColsRef = useRef(numCols);
 
   runningRef.current = running;
   genCountRef.current = genCount;
+  speedRef.current = speed;
+  numRowsRef.current = numRows;
+  numColsRef.current = numCols;
 
   const runSimulation = useCallback(() => {
     if (!runningRef.current) {
@@ -34,15 +40,20 @@ const Controls = (props) => {
 
     setGrid((g) => {
       return produce(g, (gridCopy) => {
-        for (let i = 0; i < numRows; i++) {
-          for (let j = 0; j < numCols; j++) {
+        for (let i = 0; i < numRowsRef.current; i++) {
+          for (let j = 0; j < numColsRef.current; j++) {
             let neighbors = 0;
 
             operations.forEach(([x, y]) => {
               const newI = i + x;
               const newJ = j + y;
 
-              if (newI >= 0 && newI < numRows && newJ >= 0 && newJ < numCols) {
+              if (
+                newI >= 0 &&
+                newI < numRowsRef.current &&
+                newJ >= 0 &&
+                newJ < numColsRef.current
+              ) {
                 neighbors += g[newI][newJ];
               }
             });
@@ -59,7 +70,7 @@ const Controls = (props) => {
     });
 
     setGenCount(genCountRef.current + 1);
-    setTimeout(runSimulation, 50);
+    setTimeout(runSimulation, speedRef.current);
   }, []);
 
   const clearGrid = () => {
@@ -86,6 +97,8 @@ const Controls = (props) => {
           </button>
           <button onClick={clearGrid}>Clear</button>
           <button onClick={randomGrid}>Random</button>
+          <button onClick={speedUp}>Speed Up</button>
+          <button onClick={speedDown}>Speed Down</button>
         </div>
         <p className="generation">Generation: {genCountRef.current}</p>
       </div>
