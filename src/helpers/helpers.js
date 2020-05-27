@@ -1,3 +1,5 @@
+import produce from "immer";
+
 // function to initialize empty grid with 0s
 export function generateGrid(r, c) {
   const rows = [];
@@ -7,4 +9,12 @@ export function generateGrid(r, c) {
   }
 
   return rows;
+}
+
+export function stateChange(rowIndex, colIndex, cb, grid) {
+  const newGrid = produce(grid, (gridCopy) => {
+    gridCopy[rowIndex][colIndex] = grid[rowIndex][colIndex] ? 0 : 1;
+  });
+
+  cb(newGrid);
 }
