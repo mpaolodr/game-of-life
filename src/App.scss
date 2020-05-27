@@ -16,7 +16,7 @@ body {
 
   .grid {
     display: grid;
-    width: 750px;
+    min-width: 750px;
     max-width: 750px;
     height: 640px;
     margin: 0 auto;
