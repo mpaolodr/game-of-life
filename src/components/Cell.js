@@ -9,12 +9,17 @@ const Cell = (props) => {
     setGrid,
     color,
     canvasColor,
+    running,
   } = props;
 
   return (
     <div
       className="cell"
-      onClick={() => stateChange(indexRow, indexCol, setGrid, grid)}
+      onClick={() => {
+        if (running === false) {
+          stateChange(indexRow, indexCol, setGrid, grid);
+        }
+      }}
       style={{
         backgroundColor: grid[indexRow][indexCol] ? color : canvasColor,
       }}

@@ -9,27 +9,29 @@ import Features from "./Features.js";
 import { generateGrid, stateChange } from "../helpers/helpers.js";
 
 const Grid = () => {
-  // const numRows = 45;
-  // const numCols = 45;
-
-  const [dimension, setDimension] = useState("45x45");
+  const [dimension, setDimension] = useState("60x60");
 
   const numRows = parseInt(dimension.split("x")[0], 10);
   const numCols = parseInt(dimension.split("x")[1], 10);
 
+  // set grid
   const [grid, setGrid] = useState(() => {
     return generateGrid(numRows, numCols);
   });
 
+  // default settings
   const [speed, setSpeed] = useState(500);
   const [color, setColor] = useState("black");
-  const [canvasColor, setCanvasColor] = useState("white");
+  const [canvasColor, setCanvasColor] = useState("gray");
+  const [running, setRunning] = useState(false);
 
+  // reset grid when user changes dimension
   useEffect(() => {
     setGrid(generateGrid(numRows, numCols));
   }, [dimension]);
 
   // speed up function
+  // decrease number of milliseconds getting passed to setTimeout function
   const speedUp = () => {
     if (speed > 100) {
       setSpeed(speed - 100);
@@ -41,7 +43,7 @@ const Grid = () => {
   };
 
   // speed down function
-
+  // increase number of milliseconds to slow down animation
   const speedDown = () => {
     if (speed <= 1000) {
       setSpeed(speed + 100);
@@ -56,10 +58,11 @@ const Grid = () => {
         setColor={setColor}
         setCanvasColor={setCanvasColor}
         setDimension={setDimension}
+        running={running}
       />
       <div
         className="grid"
-        style={{ gridTemplateColumns: `repeat(${numCols}, 15px)` }}
+        style={{ gridTemplateColumns: `repeat(${numCols}, 10px)` }}
       >
         {grid.map((row, i) => {
           return row.map((col, j) => {
@@ -73,6 +76,7 @@ const Grid = () => {
                 setGrid={setGrid}
                 color={color}
                 canvasColor={canvasColor}
+                running={running}
               />
             );
           });
@@ -85,6 +89,8 @@ const Grid = () => {
         speed={speed}
         speedUp={speedUp}
         speedDown={speedDown}
+        running={running}
+        setRunning={setRunning}
       />
     </>
   );

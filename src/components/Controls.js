@@ -16,17 +16,27 @@ const operations = [
 ];
 
 const Controls = (props) => {
-  const { setGrid, numRows, numCols, speed, speedUp, speedDown } = props;
+  const {
+    setGrid,
+    numRows,
+    numCols,
+    speed,
+    speedUp,
+    speedDown,
+    running,
+    setRunning,
+  } = props;
 
-  const [running, setRunning] = useState(false);
   const [genCount, setGenCount] = useState(0);
 
+  // create references to state variables
   const runningRef = useRef(running);
   const genCountRef = useRef(genCount);
   const speedRef = useRef(speed);
   const numRowsRef = useRef(numRows);
   const numColsRef = useRef(numCols);
 
+  // refs so that values used by runSimulation function will always be updated even after running it once
   runningRef.current = running;
   genCountRef.current = genCount;
   speedRef.current = speed;
@@ -48,6 +58,7 @@ const Controls = (props) => {
               const newI = i + x;
               const newJ = j + y;
 
+              // check if index is not out of the grid system setup
               if (
                 newI >= 0 &&
                 newI < numRowsRef.current &&
@@ -73,11 +84,13 @@ const Controls = (props) => {
     setTimeout(runSimulation, speedRef.current);
   }, []);
 
+  // reset grid and generation counter
   const clearGrid = () => {
     setGrid(generateGrid(numRows, numCols));
     setGenCount(0);
   };
 
+  // generate random cells
   const randomGrid = () => {
     setGrid(generateRandom(numRows, numCols));
   };

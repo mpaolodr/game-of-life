@@ -1,7 +1,7 @@
 import React from "react";
 
 const Features = (props) => {
-  const { setColor, setCanvasColor, setDimension } = props;
+  const { setColor, setCanvasColor, setDimension, running } = props;
 
   return (
     <div className="features">
@@ -10,7 +10,9 @@ const Features = (props) => {
         <select
           name="color"
           onChange={(e) => {
-            setColor(e.target.value);
+            if (running === false) {
+              setColor(e.target.value);
+            }
           }}
         >
           <option value="black">Black</option>
@@ -23,26 +25,30 @@ const Features = (props) => {
         <select
           name="canvas-color"
           onChange={(e) => {
-            setCanvasColor(e.target.value);
+            if (running === false) {
+              setCanvasColor(e.target.value);
+            }
           }}
         >
-          <option value="white">White</option>
-          <option value="black">Black</option>
           <option value="gray">Gray</option>
+          <option value="black">Black</option>
+          <option value="blue">Blue</option>
         </select>
 
         <label htmlFor="dimension">Set Dimension</label>
         <select
           name="dimension"
           onChange={(e) => {
-            setDimension(e.target.value);
+            if (running === false) {
+              setDimension(e.target.value);
+            }
           }}
         >
-          <option value="45x45">45 x 45</option>
+          <option value="60x60">60 x 60</option>
+          <option value="50x50">50 x 50</option>
           <option value="40x40">40 x 40</option>
-          <option value="35x35">35 x 35</option>
           <option value="30x30">30 x 30</option>
-          <option value="25x25">25 x 25</option>
+          <option value="20x20">20 x 20</option>
         </select>
       </form>
 
